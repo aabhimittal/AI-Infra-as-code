@@ -79,8 +79,8 @@ variable "single_nat_gateway" {
     Leave as null to auto-select based on `environment` (false for prod,
     true otherwise).
   EOT
-  type    = bool
-  default = null
+  type        = bool
+  default     = null
 }
 
 variable "tags" {

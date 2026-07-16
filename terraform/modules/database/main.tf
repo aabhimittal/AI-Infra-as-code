@@ -109,8 +109,8 @@ resource "aws_db_instance" "this" {
   instance_class = var.instance_class
 
   allocated_storage = var.allocated_storage_gb
-  storage_type       = "gp3"
-  storage_encrypted  = true # encrypt data at rest with the default KMS key
+  storage_type      = "gp3"
+  storage_encrypted = true # encrypt data at rest with the default KMS key
 
   db_name  = var.db_name
   username = var.db_username
@@ -118,13 +118,13 @@ resource "aws_db_instance" "this" {
 
   db_subnet_group_name   = aws_db_subnet_group.this.name
   vpc_security_group_ids = [aws_security_group.db.id]
-  multi_az                = var.multi_az
+  multi_az               = var.multi_az
 
   # Automated backups: 7-day retention with a nightly backup window ahead
   # of the weekly maintenance window.
   backup_retention_period = 7
-  backup_window             = "03:00-04:00"
-  maintenance_window        = "mon:04:30-mon:05:30"
+  backup_window           = "03:00-04:00"
+  maintenance_window      = "mon:04:30-mon:05:30"
 
   # Protect prod from accidental deletion; keep dev/staging easy to tear down.
   deletion_protection       = var.environment == "prod"

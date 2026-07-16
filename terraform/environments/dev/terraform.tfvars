@@ -13,19 +13,19 @@ network = {
 }
 
 kubernetes = {
-  version             = "1.29"
-  node_instance_type  = "t3.medium"
-  node_min            = 1
-  node_max            = 3
-  node_desired        = 2
+  version            = "1.29"
+  node_instance_type = "t3.medium"
+  node_min           = 1
+  node_max           = 3
+  node_desired       = 2
 }
 
 database = {
-  engine                = "postgres"
-  engine_version        = "15"
-  instance_class        = "db.t3.medium"
-  allocated_storage_gb  = 20
-  multi_az              = false
+  engine               = "postgres"
+  engine_version       = "15"
+  instance_class       = "db.t3.medium"
+  allocated_storage_gb = 20
+  multi_az             = false
 }
 
 load_balancer = {
