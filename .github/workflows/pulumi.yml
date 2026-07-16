@@ -1,0 +1,31 @@
+name: pulumi
+
+on:
+  push:
+    paths:
+      - "pulumi/**"
+      - ".github/workflows/pulumi.yml"
+  pull_request:
+    paths:
+      - "pulumi/**"
+      - ".github/workflows/pulumi.yml"
+
+jobs:
+  # Compile-check the Pulumi program without contacting AWS. A real
+  # `pulumi preview` needs cloud credentials and a state backend, so CI only
+  # verifies the program imports and type-checks; deploys happen from a
+  # credentialed environment.
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pulumi
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Byte-compile the program
+        run: python -m compileall -q __main__.py components

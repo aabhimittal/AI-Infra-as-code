@@ -1,0 +1,48 @@
+# ---- Terraform ----
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars.local
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.lock.hcl
+.terraformrc
+terraform.rc
+tfplan
+*.tfplan
+
+# ---- Pulumi ----
+Pulumi.*.local.yaml
+.pulumi/
+venv/
+
+# ---- Python (ai-optimizer) ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+out/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# ---- Secrets (never commit) ----
+*.pem
+*.key
+credentials
+.aws/

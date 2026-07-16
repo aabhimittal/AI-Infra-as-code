@@ -1,0 +1,104 @@
+[
+  {
+    "workload": {
+      "project": "blog-dev",
+      "environment": "dev",
+      "peak_rps": 50,
+      "avg_pod_mem_mib": 384,
+      "replicas": 3,
+      "db_connections": 40,
+      "data_size_gb": 10
+    },
+    "infra": {
+      "node_instance_type": "t3.medium",
+      "node_desired": 2,
+      "db_instance_class": "db.t3.medium",
+      "allocated_storage_gb": 50
+    }
+  },
+  {
+    "workload": {
+      "project": "api-staging",
+      "environment": "staging",
+      "peak_rps": 400,
+      "avg_pod_mem_mib": 512,
+      "replicas": 6,
+      "db_connections": 120,
+      "data_size_gb": 80
+    },
+    "infra": {
+      "node_instance_type": "m5.large",
+      "node_desired": 3,
+      "db_instance_class": "db.r6g.large",
+      "allocated_storage_gb": 200
+    }
+  },
+  {
+    "workload": {
+      "project": "shop-prod",
+      "environment": "prod",
+      "peak_rps": 1200,
+      "avg_pod_mem_mib": 768,
+      "replicas": 12,
+      "db_connections": 300,
+      "data_size_gb": 200
+    },
+    "infra": {
+      "node_instance_type": "m5.xlarge",
+      "node_desired": 4,
+      "db_instance_class": "db.r6g.xlarge",
+      "allocated_storage_gb": 400
+    }
+  },
+  {
+    "workload": {
+      "project": "analytics-prod",
+      "environment": "prod",
+      "peak_rps": 800,
+      "avg_pod_mem_mib": 1536,
+      "replicas": 8,
+      "db_connections": 250,
+      "data_size_gb": 500
+    },
+    "infra": {
+      "node_instance_type": "r5.xlarge",
+      "node_desired": 4,
+      "db_instance_class": "db.r6g.2xlarge",
+      "allocated_storage_gb": 800
+    }
+  },
+  {
+    "workload": {
+      "project": "internal-tool-dev",
+      "environment": "dev",
+      "peak_rps": 20,
+      "avg_pod_mem_mib": 256,
+      "replicas": 2,
+      "db_connections": 20,
+      "data_size_gb": 5
+    },
+    "infra": {
+      "node_instance_type": "t3.medium",
+      "node_desired": 2,
+      "db_instance_class": "db.t3.medium",
+      "allocated_storage_gb": 20
+    }
+  },
+  {
+    "workload": {
+      "project": "high-traffic-prod",
+      "environment": "prod",
+      "peak_rps": 3000,
+      "avg_pod_mem_mib": 512,
+      "replicas": 20,
+      "db_connections": 500,
+      "data_size_gb": 300
+    },
+    "infra": {
+      "node_instance_type": "c5.2xlarge",
+      "node_desired": 5,
+      "db_instance_class": "db.r6g.2xlarge",
+      "allocated_storage_gb": 800
+    }
+  }
+]

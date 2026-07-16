@@ -1,0 +1,3 @@
+# Core library and tests run on the Python standard library alone.
+# PyYAML is only needed to read/write YAML (the CLI accepts JSON without it).
+pyyaml>=6.0

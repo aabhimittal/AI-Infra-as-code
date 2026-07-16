@@ -1,0 +1,38 @@
+name: ai-optimizer
+
+on:
+  push:
+    paths:
+      - "ai-optimizer/**"
+      - ".github/workflows/ai-optimizer.yml"
+  pull_request:
+    paths:
+      - "ai-optimizer/**"
+      - ".github/workflows/ai-optimizer.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: ai-optimizer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Smoke test the CLI (dev + prod)
+        run: |
+          python -m aiopt.cli optimize -w examples/workload-dev.yaml --emit-dir out/dev --stack dev
+          python -m aiopt.cli optimize -w examples/workload-prod.yaml --emit-dir out/prod --stack prod
+      - name: Show generated artifacts
+        run: |
+          echo "--- terraform ---"; cat out/prod/terraform.auto.tfvars
+          echo "--- pulumi ---";    cat out/prod/Pulumi.prod.yaml

@@ -1,0 +1,14 @@
+# A production workload. high_availability() is true because environment=prod,
+# so the optimizer forces multi-AZ RDS, 3 AZs, per-AZ NAT gateways, and >=3
+# nodes, then searches for the cheapest config that carries the traffic.
+project: myapp
+environment: prod
+region: us-east-1
+peak_rps: 900
+avg_pod_mem_mib: 640
+replicas: 10
+db_connections: 250
+data_size_gb: 180
+data_growth_gb_yr: 120
+monthly_budget_usd: 3000
+ha_required: true
