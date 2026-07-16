@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiopt"
+version = "0.1.0"
+description = "AI-based Infrastructure-as-Code optimizer (genetic search + k-NN recommender)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Abhishek Mittal" }]
+dependencies = []
+
+[project.optional-dependencies]
+yaml = ["pyyaml>=6.0"]
+dev = ["pyyaml>=6.0", "pytest>=7.0"]
+
+[project.scripts]
+aiopt = "aiopt.cli:main"
+
+[tool.setuptools]
+packages = ["aiopt"]

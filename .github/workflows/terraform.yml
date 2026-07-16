@@ -1,0 +1,31 @@
+name: terraform
+
+on:
+  push:
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
+  pull_request:
+    paths:
+      - "terraform/**"
+      - ".github/workflows/terraform.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [dev, staging, prod]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+      - name: Format check
+        run: terraform fmt -check -recursive terraform
+      - name: Init (no backend) and validate ${{ matrix.env }}
+        working-directory: terraform/environments/${{ matrix.env }}
+        # -backend=false lets validation run without cloud credentials.
+        run: |
+          terraform init -backend=false
+          terraform validate

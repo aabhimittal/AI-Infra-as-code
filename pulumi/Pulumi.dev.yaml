@@ -1,0 +1,31 @@
+# Dev stack config: small, cost-optimized footprint.
+# - single shared NAT gateway (not one per AZ)
+# - multi_az disabled for RDS
+# - small node group (desired 2)
+config:
+  aws:region: us-east-1
+  ai-infra-as-code:project: ai-infra-demo
+  ai-infra-as-code:region: us-east-1
+  ai-infra-as-code:environment: dev
+  ai-infra-as-code:network:
+    vpc_cidr: 10.0.0.0/16
+    az_count: 2
+    single_nat_gateway: true
+  ai-infra-as-code:kubernetes:
+    version: "1.29"
+    node_instance_type: t3.medium
+    node_min: 1
+    node_max: 3
+    node_desired: 2
+  ai-infra-as-code:database:
+    engine: postgres
+    engine_version: "15.4"
+    instance_class: db.t3.medium
+    allocated_storage_gb: 20
+    multi_az: false
+  ai-infra-as-code:load_balancer:
+    type: application
+    internet_facing: true
+  ai-infra-as-code:tags:
+    Team: platform
+    CostCenter: dev-sandbox

@@ -1,0 +1,11 @@
+name: ai-infra-as-code
+runtime:
+  name: python
+  options:
+    # Use a local virtualenv so `pulumi up` provisions its own interpreter
+    # and dependencies without polluting the system Python.
+    virtualenv: venv
+description: >
+  AWS infrastructure (VPC, EKS, RDS Postgres, Application Load Balancer)
+  provisioned from a cloud-agnostic infra spec emitted by the AI optimizer.
+  Mirrors the Terraform implementation in ../terraform for schema parity.

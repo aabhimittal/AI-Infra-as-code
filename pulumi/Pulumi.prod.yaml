@@ -1,0 +1,31 @@
+# Prod stack config: larger, highly-available footprint.
+# - one NAT gateway per AZ across 3 AZs
+# - multi_az enabled for RDS
+# - larger node group (desired 3), larger instance types and storage
+config:
+  aws:region: us-east-1
+  ai-infra-as-code:project: ai-infra-demo
+  ai-infra-as-code:region: us-east-1
+  ai-infra-as-code:environment: prod
+  ai-infra-as-code:network:
+    vpc_cidr: 10.2.0.0/16
+    az_count: 3
+    single_nat_gateway: false
+  ai-infra-as-code:kubernetes:
+    version: "1.29"
+    node_instance_type: m5.xlarge
+    node_min: 3
+    node_max: 6
+    node_desired: 3
+  ai-infra-as-code:database:
+    engine: postgres
+    engine_version: "15.4"
+    instance_class: db.r6g.large
+    allocated_storage_gb: 200
+    multi_az: true
+  ai-infra-as-code:load_balancer:
+    type: application
+    internet_facing: true
+  ai-infra-as-code:tags:
+    Team: platform
+    CostCenter: prod

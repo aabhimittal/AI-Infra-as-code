@@ -1,0 +1,13 @@
+# A small development workload. The optimizer should pick cheap, single-AZ,
+# burstable infrastructure that still fits the pods and data.
+project: myapp
+environment: dev
+region: us-east-1
+peak_rps: 60
+avg_pod_mem_mib: 384
+replicas: 3
+db_connections: 40
+data_size_gb: 15
+data_growth_gb_yr: 20
+monthly_budget_usd: 400
+ha_required: false
